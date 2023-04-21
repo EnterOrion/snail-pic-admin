@@ -1,7 +1,10 @@
+import "./App.css";
+import Login from "./Login";
+
 function App() {
   return (
     <>
-      <p>Hello react!</p>
+      <Login />
     </>
   );
 }

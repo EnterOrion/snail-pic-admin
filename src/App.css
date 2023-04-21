@@ -1,6 +1,75 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  height: 100%;
+}
+body,
+html {
+  height: 100%;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: hsl(234, 42%, 40%);
+  color: white;
+}
+
+form {
+  display: flex;
+  border: 1px solid white;
+  padding: 1rem;
+  flex-direction: column;
+  width: 40%;
+}
+
+label {
+  font-size: 1.6rem;
+}
+
+input {
+  border-style: none;
+  border-radius: 10px;
+  outline: none;
+  padding: 0.2rem;
+}
+
+#name {
+  margin-bottom: 0.8rem;
+}
+
+.form-button {
+  width: 15%;
+  margin-top: 1rem;
+  border: 1px solid white;
+  color: white;
+  background-color: transparent;
+  padding: 1rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.form-button:hover {
+  color: hsl(356, 81%, 73%);
+}
+
+.login-heading {
+  font-family: "Caveat", cursive;
+  font-size: 4.5rem;
+  color: hsl(356, 81%, 73%);
+  font-weight: 700;
+}
+
+.login-page {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 10rem;
 }
