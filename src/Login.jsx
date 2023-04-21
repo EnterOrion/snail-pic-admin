@@ -1,7 +1,7 @@
 const Login = () => {
   return (
-    <div className="login-page">
-      <h1 className="login-heading">Snail Pic Admin</h1>
+    <div className="page">
+      <h1 className="page-heading">Snail Pic Admin</h1>
       <form>
         <label htmlFor="name">Username</label>
         <input
