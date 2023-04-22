@@ -1,27 +1,68 @@
-const Login = () => {
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
+const Login = ({ setUserAuth }) => {
+  const { register, handleSubmit } = useForm();
+  const [loginErr, setLoginErr] = useState(false);
+  const onSubmit = async (data) => {
+    const formData = JSON.stringify(data);
+    try {
+      const req = await fetch("https://snail-pic-api.onrender.com/api/login", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const myJson = await req.json();
+      if (req.status !== 200) {
+        setLoginErr(true);
+        return;
+      }
+      localStorage.setItem("token", myJson.token);
+      localStorage.setItem("userAuth", true);
+      setUserAuth(true);
+    } catch (err) {
+      setLoginErr(true);
+    }
+  };
+
   return (
     <div className="page">
       <h1 className="page-heading">Snail Pic Admin</h1>
       <form>
-        <label htmlFor="name">Username</label>
+        <label htmlFor="username">Username</label>
         <input
-          id="name"
+          id="username"
           type="text"
           placeholder="Username"
-          name="name"
-          required
+          name="username"
+          {...register("username", {
+            required: "Required",
+          })}
         />
+
         <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
           placeholder="Password"
           name="password"
-          required
+          {...register("password", {
+            required: "Required",
+          })}
         />
-        <button className="form-button" type="submit">
+
+        <button
+          className="form-button"
+          type="submit"
+          onClick={((e) => e.preventDefault(), handleSubmit(onSubmit))}
+        >
           Login
         </button>
+        {loginErr && <p>Username or password incorrect</p>}
       </form>
     </div>
   );

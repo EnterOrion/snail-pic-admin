@@ -1,7 +1,14 @@
-const uploadForm = () => {
+const uploadForm = ({ setUserAuth }) => {
+  const clickManager = () => {
+    setUserAuth(false);
+    localStorage.clear();
+    window.location.reload(true);
+  };
   return (
     <>
-      <button className="logout-button">Logout</button>
+      <button className="logout-button" onClick={clickManager}>
+        Logout
+      </button>
       <div className="page">
         <h1 className="page-heading">Upload</h1>
         <form>
