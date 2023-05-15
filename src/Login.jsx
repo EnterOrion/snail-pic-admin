@@ -6,6 +6,7 @@ const Login = ({ setUserAuth }) => {
   const { register, handleSubmit } = useForm();
   const [loginErr, setLoginErr] = useState(false);
   const onSubmit = async (data) => {
+    // POST with login data inputted into the form
     const formData = JSON.stringify(data);
     try {
       const req = await fetch("https://snail-pic-api.onrender.com/api/login", {
@@ -17,10 +18,12 @@ const Login = ({ setUserAuth }) => {
         },
       });
       const myJson = await req.json();
+      // If error, render error
       if (req.status !== 200) {
         setLoginErr(true);
         return;
       }
+      // Otherwise, initiate session and store token
       localStorage.setItem("token", myJson.token);
       localStorage.setItem("userAuth", true);
       setUserAuth(true);

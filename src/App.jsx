@@ -6,6 +6,7 @@ import UploadForm from "./UploadForm";
 function App() {
   const [userAuth, setUserAuth] = useState(false);
 
+  // Checks userAuth to render login component or upload form component
   useEffect(() => {
     const user = localStorage.getItem("userAuth");
     if (user) {
@@ -14,6 +15,7 @@ function App() {
       setUserAuth(false);
     }
   }, []);
+
   return (
     <>
       {!userAuth && <Login setUserAuth={setUserAuth} />}

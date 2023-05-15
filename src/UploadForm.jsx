@@ -5,6 +5,7 @@ const UploadForm = ({ setUserAuth }) => {
   const { register, handleSubmit } = useForm();
 
   const submitForm = async (data) => {
+    // Gets auth token to post data
     const token = localStorage.getItem("token");
     console.log(token);
     console.log(data);
@@ -22,6 +23,7 @@ const UploadForm = ({ setUserAuth }) => {
           },
         }
       );
+      // Return any error
       if (req.status !== 200) {
         console.log("error!");
         return;
@@ -32,6 +34,7 @@ const UploadForm = ({ setUserAuth }) => {
     }
   };
 
+  // Clears the session on logout
   const clickManager = () => {
     setUserAuth(false);
     localStorage.clear();
