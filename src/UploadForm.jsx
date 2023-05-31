@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 const UploadForm = ({ setUserAuth }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState, reset } = useForm();
 
   const submitForm = async (data) => {
     // Gets auth token to post data
@@ -33,6 +34,12 @@ const UploadForm = ({ setUserAuth }) => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({ dateTaken: "", photoUrl: "", description: "", category: "2D" });
+    }
+  }, [formState, reset]);
 
   // Clears the session on logout
   const clickManager = () => {
